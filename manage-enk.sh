@@ -31,7 +31,13 @@ start_enk(){
                 remove_container "$container"
                 run-containers "$container"
             else
-                run-containers "$container"
+                get_created_container "$container"
+                    if [ "$?" -eq 1 ]; then
+                        remove_container "$container"
+                        run-containers "$container"
+                    else
+                        run-containers "$container"
+                    fi
             fi
         fi
     done

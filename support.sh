@@ -85,6 +85,20 @@ get_exited_container(){
     fi
 }
 
+# Get created container
+get_created_container(){
+    CREATED=$(docker ps -a \
+    --format '{{.Names}}' \
+    --format '{{.Status}}' \
+    --filter 'name='"$1"'' \
+    --filter 'status=created')
+    if [ -z "$CREATED" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 # Remove container
 remove_container(){
     if [ -z "$1" ]; then
