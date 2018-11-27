@@ -63,6 +63,8 @@ restart_enk(){
             remove_container "$container"
             run-containers "$container"
             post-to-slack "$message"
+        else
+            echo "Script em funcionamento :)"
         fi
     done
 }
