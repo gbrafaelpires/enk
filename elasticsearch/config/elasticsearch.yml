@@ -3,6 +3,8 @@ network.host: 0.0.0.0
 
 thread_pool.write.size: 5
 thread_pool.write.queue_size: -1
+thread_pool.search.min_queue_size: 2000
+thread_pool.search.max_queue_size: 4000
 xpack.monitoring.collection.enabled: true
 
 # minimum_master_nodes need to be explicitly set when bound on a public IP
