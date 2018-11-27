@@ -120,3 +120,12 @@ kill_container(){
         docker kill "$CONTAINER"
     fi
 }
+
+# Notify Slack
+post-to-slack(){
+  SLACK_URL=https://hooks.slack.com/services/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 
+  curl -X POST \
+  -H 'Content-type: application/json' \
+  --data "$1" \
+  "${SLACK_URL}"
+}

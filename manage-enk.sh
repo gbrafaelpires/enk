@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Set pwd variable
 export PWD=$(pwd)
@@ -50,6 +50,19 @@ stop_enk(){
         if [ "$?" -eq 0 ]; then
             kill_container "$container"
             remove_container "$container"
+        fi
+    done
+}
+
+# Restart ENK
+restart_enk(){
+    for container in "${containers[@]}"; do
+        get_running_container "$container"
+        if [ "$?" -eq 1 ]; then
+            message='{"text":"'$container' reiniciado :)"}'
+            remove_container "$container"
+            run-containers "$container"
+            post-to-slack "$message"
         fi
     done
 }

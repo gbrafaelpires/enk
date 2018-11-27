@@ -51,19 +51,19 @@ run-containers(){
             if [ "$?" -eq 0 ]; then
                 health_check_http http://localhost:9200
             else
-                exit 1
+                return 1
             fi ;;
     "$KB") kb && get_running_container "$KB"
             if [ "$?" -eq 0 ]; then
                 health_check_http http://localhost:5601
             else
-                exit 1
+                return 1
             fi ;;
     "$NX") nx && get_running_container "$NX"
             if [ "$?" -eq 0 ]; then
                 health_check_http http://localhost
             else
-                exit 1
+                return 1
             fi ;;
     esac
 }
