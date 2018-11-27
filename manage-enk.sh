@@ -63,9 +63,6 @@ restart_enk(){
             remove_container "$container"
             run-containers "$container"
             post-to-slack "$message"
-        else
-            message='{"text":"'$container' reiniciado :)"}'
-            post-to-slack "$message"
         fi
     done
 }
